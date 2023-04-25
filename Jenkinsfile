@@ -2,7 +2,6 @@ pipeline {
      agent any
     
     stages {
-        
         stage('Construir el proyecto') {
             steps {
                 sh 'npm install express --save.'
@@ -21,8 +20,8 @@ pipeline {
         }
         stage('Detener los contenedores existentes y crear uno nuevo') {
             steps {
-                sh "docker stop sicei-container || true"
-                sh "docker rm sicei-container || true"
+                sh "docker stop $(docker ps -q --filter "name=sicei-container") || true"
+                sh "docker rm $(docker ps -a -q --filter "name=sicei-container") || true"
                 sh "docker run -d -p 8080:8080 --name sicei-container sicei-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
             }
         }
