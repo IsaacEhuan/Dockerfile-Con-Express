@@ -14,8 +14,9 @@ app.get('/students', (req, res) => {
 });
 
 const port = 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
 module.exports = app; 
+module.exports = server; 
