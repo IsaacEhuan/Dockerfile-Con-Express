@@ -2,11 +2,7 @@ pipeline {
      agent any
     
     stages {
-        stage('Clonar el proyecto') {
-            steps {
-                git 'https://github.com/IsaacEhuan/Dockerfile-Con-Express/tree/master-pipeline'
-            }
-        }
+        
         stage('Construir el proyecto') {
             steps {
                 sh 'npm install express --save.'
